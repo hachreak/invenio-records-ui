@@ -23,8 +23,8 @@
 
 .. _usage:
 
-=======
- Usage
-=======
+=====
+Usage
+=====
 
 .. automodule:: invenio_records_ui

@@ -76,7 +76,9 @@ app.config.update(dict(
     CELERY_CACHE_BACKEND="memory",
     CELERY_EAGER_PROPAGATES_EXCEPTIONS=True,
     # Disable access control
-    RECORDS_UI_DEFAULT_PERMISSION_FACTORY=None
+    RECORDS_UI_DEFAULT_PERMISSION_FACTORY=None,
+    SQLALCHEMY_DATABASE_URI=os.getenv('SQLALCHEMY_DATABASE_URI',
+                                      'sqlite:///app.db'),
 ))
 FlaskCeleryExt(app)
 FlaskCLI(app)
@@ -148,3 +150,5 @@ def records():
         # Record 7 - Unregistered PID
         PersistentIdentifier.create(
             'recid', '7', status=PIDStatus.RESERVED)
+
+    db.session.commit()
